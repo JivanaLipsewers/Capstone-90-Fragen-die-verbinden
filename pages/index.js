@@ -1,5 +1,5 @@
-import React from 'react';
-import { Header, Question } from '../components/Question.js';
+import Header from "../components/Header/index.js";
+import Question from "../components/Question/index.js";
 
 const questions = [
   {
@@ -65,19 +65,17 @@ const questions = [
     category: 'Über uns',
     question: 'Inwiefern bereichere ich dein Leben?',
   },
-  // Weitere Fragen hinzufügen...
+  // Weitere später Fragen hier
 ];
 
 const IndexPage = () => {
   return (
-    <div>
+    <>
       <Header />
       {questions.map((question, index) => (
-        <div key={index} style={{ marginBottom: '160px' }}>
-          <Question category={question.category} question={question.question} />
-        </div>
+        <Question key={index} category={question.category} question={question.question} />
       ))}
-    </div>
+    </>
   );
 };
 
