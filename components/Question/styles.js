@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const QuestionContainer = styled.div`
-  padding-top: 320px;
+  padding-top: 60px;
   text-align: center;
 `;
 

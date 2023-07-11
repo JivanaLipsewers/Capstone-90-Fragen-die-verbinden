@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Filter from '../components/Filter/index.js';
 import Header from "../components/Header/index.js";
 import Question from "../components/Question/index.js";
+import Button from "../components/Button"
 import { QuestionContainer } from "../components/Question/styles.js";
 
 const questions = [
@@ -71,7 +72,7 @@ const questions = [
   // Weitere später Fragen hier
 ];
 
-const categories = ['Über dich', 'Über mich', 'Über uns'];
+const categories = ['Über dich', 'Über mich', 'Über uns', 'New Questions', 'Favoriten', 'Notizen'];
 
 const IndexPage = () => {
   const [selectedCategories, setSelectedCategories] = useState(categories);
@@ -90,8 +91,7 @@ const IndexPage = () => {
 
   return (
     <>
-      <Header />
-      <Filter categories={categories} selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
+      <Header categories={categories} selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange}/>
       {filteredQuestions.length > 0 ? (
         filteredQuestions.map((question, index) => (
           <Question key={index} category={question.category} question={question.question} />
@@ -99,6 +99,7 @@ const IndexPage = () => {
       ) : (
         <p>Keine Fragen gefunden.</p>
       )}
+      <Button />
     </>
   );
 };
