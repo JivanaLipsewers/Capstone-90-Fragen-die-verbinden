@@ -2,25 +2,32 @@ import styled from 'styled-components';
 
 export const ButtonContainer = styled.div`
   position: fixed;
-  bottom: 20px;
+  bottom: 40px;
   left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
-  width: 100vw;
   padding: 0 20px;
+  z-index: 9999;
 `;
 
 export const Button = styled.button`
-  flex: 1;
-  background-color: #FFF;
+  background-color: #fff;
   border: 2px solid #000;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
-`;
+  width: calc(33.33% - 20px);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
-export const ButtonText = styled.span`
-  font-size: 16px;
-  color: #000;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  svg {
+    width: 50px;
+    height: 50px;
+  }
 `;

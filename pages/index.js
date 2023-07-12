@@ -2,7 +2,7 @@ import { useState } from 'react';
 import Filter from '../components/Filter/index.js';
 import Header from "../components/Header/index.js";
 import Question from "../components/Question/index.js";
-import Button from "../components/Button"
+import Button from "../components/Button/index.js";
 import { QuestionContainer } from "../components/Question/styles.js";
 
 const questions = [
@@ -76,6 +76,7 @@ const categories = ['Über dich', 'Über mich', 'Über uns', 'New Questions', 'F
 
 const IndexPage = () => {
   const [selectedCategories, setSelectedCategories] = useState(categories);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -89,16 +90,37 @@ const IndexPage = () => {
     ? questions.filter((question) => selectedCategories.includes(question.category))
     : questions;
 
+  const handlePrevQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => {
+      if (prevIndex > 0) {
+        return prevIndex - 1;
+      } else {
+        return filteredQuestions.length - 1;
+      }
+    });
+  };
+
+  const handleNextQuestion = () => {
+    setCurrentQuestionIndex((prevIndex) => {
+      if (prevIndex < filteredQuestions.length - 1) {
+        return prevIndex + 1;
+      } else {
+        return 0;
+      }
+    });
+  };
+
   return (
     <>
-      <Header categories={categories} selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange}/>
-      {filteredQuestions.length > 0 ? (
-        filteredQuestions.map((question, index) => (
-          <Question key={index} category={question.category} question={question.question} />
-        ))
-      ) : (
-        <p>Keine Fragen gefunden.</p>
-      )}
+      <Header categories={categories} selectedCategories={selectedCategories} onCategoryChange={handleCategoryChange} />
+      <QuestionContainer>
+        <Question
+          category={filteredQuestions[currentQuestionIndex].category}
+          question={filteredQuestions[currentQuestionIndex].question}
+          onPrevQuestion={handlePrevQuestion}
+          onNextQuestion={handleNextQuestion}
+        />
+      </QuestionContainer>
       <Button />
     </>
   );
