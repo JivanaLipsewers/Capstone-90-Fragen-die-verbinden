@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Filter from '../components/Filter/index.js';
 import Header from "../components/Header/index.js";
 import Question from "../components/Question/index.js";
 import Button from "../components/Button/index.js";
