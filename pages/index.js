@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import Filter from "../components/Filter/index.js";
 import Header from "../components/Header/index.js";
 import Question from "../components/Question/index.js";
-import Button from "../components/Button/index.js";
+import AddQuestion from "../components/AddQuestion/index.js";
+import Buttons from "../components/Button/index.js";
 import { QuestionContainer } from "../components/Question/styles.js";
 
 const questions = [
@@ -74,9 +76,11 @@ const questions = [
 const categories = ['Über dich', 'Über mich', 'Über uns', 'New Questions', 'Favoriten', 'Notizen'];
 
 const IndexPage = () => {
-  const [selectedCategories, setSelectedCategories] = useState(categories);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
+    const [selectedCategories, setSelectedCategories] = useState(categories);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [userQuestions, setUserQuestions] = useState([]); // Zustand für die vom Nutzer hinzugefügten Fragen
+    const [isAddingQuestion, setIsAddingQuestion] = useState(false); // Hinzufügen des Zustands
+  
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
@@ -85,9 +89,13 @@ const IndexPage = () => {
     }
   };
 
+  const handleAddQuestion = (newQuestion) => {
+    setUserQuestions([...userQuestions, newQuestion]);
+  };
+
   const filteredQuestions = selectedCategories.length > 0
-    ? questions.filter((question) => selectedCategories.includes(question.category))
-    : questions;
+    ? [...questions, ...userQuestions].filter((question) => selectedCategories.includes(question.category))
+    : [...questions, ...userQuestions];
 
   const handlePrevQuestion = () => {
     setCurrentQuestionIndex((prevIndex) => {
@@ -120,7 +128,8 @@ const IndexPage = () => {
           onNextQuestion={handleNextQuestion}
         />
       </QuestionContainer>
-      <Button />
+      {isAddingQuestion && <AddQuestion onAddQuestion={handleAddQuestion} setIsAddingQuestion={setIsAddingQuestion} />}
+      {!isAddingQuestion && <Buttons setIsAddingQuestion={setIsAddingQuestion} />}
     </>
   );
 };
