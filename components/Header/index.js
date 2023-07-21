@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { HeaderContainer } from "./styles";
-//import Filter from "../Filter/index.js";
+import Filter from "../Filter/index.js";
 
 const Header = ({ categories, selectedCategories, onCategoryChange }) => {
+  const [filterSelectedCategories, setFilterSelectedCategories] = useState([]);
+
   return (
     <HeaderContainer>
       <h1>Quiz-App</h1>
@@ -11,10 +14,6 @@ const Header = ({ categories, selectedCategories, onCategoryChange }) => {
 
 export default Header;
 
-{
-  /* <Filter
-  categories={categories}
-  selectedCategories={selectedCategories}
-  onCategoryChange={onCategoryChange}
-/>; */
-}
+// categories={categories}
+//         selectedCategories={selectedCategories}
+//         onCategoryChange={onCategoryChange}

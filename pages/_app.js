@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Question } from "../components/Question/index.js";
 import { FavoriteButton } from "../components/FavoriteButton/index.js";
 import Header from "@/components/Header/index.js";
+import Filter from "../components/Filter/index.js";
 
 const initialQuestions = [
   {
@@ -124,9 +125,28 @@ export default function App() {
     setQuestions(updatedQuestions);
   }
 
+  const categories = ["Über uns", "Über dich", "Über mich"];
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
+
+  function handleFilterCategoryChange(category) {
+    if (selectedCategories.includes(category)) {
+      setSelectedCategories((prev) =>
+        prev.filter((selectedCategory) => selectedCategory !== category)
+      );
+    } else {
+      setSelectedCategories((prev) => [...prev, category]);
+    }
+  }
+
   return (
     <>
       <Header />
+      <Filter
+        categories={categories}
+        selectedCategories={selectedCategories}
+        onCategoryChange={handleFilterCategoryChange}
+      />
       <Question
         question={currentQuestion}
         onPrevQuestion={handlePrevQuestion}

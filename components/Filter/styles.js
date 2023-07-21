@@ -16,7 +16,6 @@ export const FilterHeader = styled.h3`
   margin: 0;
   padding: 0;
   cursor: pointer;
-  margin-bottom: 16px;
 `;
 
 export const ChevronIcon = styled.span`
@@ -53,7 +52,6 @@ export const CloseIcon = styled.span`
 export const FilterLabel = styled.label`
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
 `;
 
 export const FilterCheckbox = styled.input`

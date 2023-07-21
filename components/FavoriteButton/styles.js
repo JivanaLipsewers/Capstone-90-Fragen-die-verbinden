@@ -24,10 +24,9 @@ export const HeartButton = styled(Button)`
   background-color: #fff;
   height: 100px;
   border: 2px solid #000;
-  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: yellow; /* Gelbe Hoverfarbe */
+    background-color: #fff053;
   }
 
   svg {
