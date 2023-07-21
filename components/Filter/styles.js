@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FilterContainer = styled.div`
-  background-color: #FFF;
+  background-color: #fff;
   border: 2px solid #000;
   cursor: pointer;
   display: flex;
@@ -35,7 +35,7 @@ export const SelectedCategoriesContainer = styled.div`
 `;
 
 export const SelectedCategory = styled.div`
-  background-color: #FFF;
+  background-color: #fff;
   border: 1px solid #000;
   border-radius: 5px;
   padding: 5px 10px;
