@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const ButtonContainer = styled.div`
-  position: fixed;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
+  // position: fixed;
+  // bottom: 40px;
+  // left: 40px;
+  // right: 40px;
   display: flex;
   justify-content: space-between;
   padding: 0 20px;
-  z-index: 9999;
+  // z-index: 9999;
 `;
 
 export const Button = styled.button`

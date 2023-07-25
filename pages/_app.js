@@ -3,6 +3,7 @@ import { Question } from "../components/Question/index.js";
 import { FavoriteButton } from "../components/FavoriteButton/index.js";
 import Header from "@/components/Header/index.js";
 import Filter from "../components/Filter/index.js";
+import { AddQuestionButton } from "@/components/AddQuestion/index.js";
 
 const initialQuestions = [
   {
@@ -139,6 +140,13 @@ export default function App() {
     }
   }
 
+  const handleToggleAdd = () => {
+    setCurrentQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      isAdded: !prevQuestion.isAdded,
+    }));
+  };
+
   return (
     <>
       <Header />
@@ -152,11 +160,16 @@ export default function App() {
         onPrevQuestion={handlePrevQuestion}
         onNextQuestion={handleNextQuestion}
       />
-
-      <FavoriteButton
-        isFavorite={currentQuestion.isFavorite}
-        onToggleFavorite={handleToggleFavorite}
-      />
+      <div style={{ display: "flex", gap: "10px" }}>
+        <FavoriteButton
+          isFavorite={currentQuestion.isFavorite}
+          onToggleFavorite={handleToggleFavorite}
+        />
+        <AddQuestionButton
+          isAdded={currentQuestion.isAdded}
+          onToggleAdd={handleToggleAdd}
+        />
+      </div>
     </>
   );
 }

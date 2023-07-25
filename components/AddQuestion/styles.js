@@ -1,22 +1,32 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const AddQuestionContainer = styled.div`
-  margin-top: 20px;
+export const ButtonContainerAddQuestion = styled.div`
+  // position: fixed;
+  // bottom: 40px;
+  // left: 40px;
+  // right: 40px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  // z-index: 9999;
 `;
 
-export const AddQuestionButton = styled.button`
-  background-color: #fff;
-  border: 2px solid #000;
-  height: 100px;
-  width: 100px;
+export const Button = styled.button`
+  border: none;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  flex: 1;
+`;
+
+export const PlusButton = styled(Button)`
+  background-color: #fff;
+  height: 100px;
+  border: 2px solid #000;
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #fff053;
   }
 
   svg {
@@ -25,23 +35,11 @@ export const AddQuestionButton = styled.button`
   }
 `;
 
-export const AddQuestionForm = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  input {
-    padding: 8px;
-    border: 2px solid #000;
-    border-radius: 4px;
-  }
-
-  div {
-    display: flex;
-    gap: 10px;
-  }
+export const PlusButtonHover = styled(Button)`
+  background-color: #f0f0f0;
 
   svg {
-    cursor: pointer;
+    width: 50px;
+    height: 50px;
   }
 `;
