@@ -100,10 +100,12 @@ const initialQuestions = [
   },
 ];
 
+const categories = ["Über uns", "Über dich", "Über mich"];
+
 export default function App() {
   const [questions, setQuestions] = useState(initialQuestions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const currentQuestion = questions[currentQuestionIndex];
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   function handlePrevQuestion() {
     if (currentQuestionIndex >= 1) {
@@ -117,10 +119,6 @@ export default function App() {
     }
   }
 
-  const categories = ["Über uns", "Über dich", "Über mich"];
-
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
   function handleFilterCategoryChange(category) {
     if (selectedCategories.includes(category)) {
       setSelectedCategories((prev) =>
@@ -130,6 +128,36 @@ export default function App() {
       setSelectedCategories((prev) => [...prev, category]);
     }
   }
+
+  const filteredQuestions = selectedCategories.length
+    ? questions.filter((question) =>
+        selectedCategories.includes(question.category)
+      )
+    : questions;
+
+  const currentQuestion = filteredQuestions[currentQuestionIndex];
+
+  //////////
+  // const [projectList, setProjectList] = useState(initialProjects);
+  // const [showForm, setShowForm] = useState(false);
+
+  // const handleShowForm = () => {
+  //   setShowForm(!showForm);
+  // };
+
+  // function handleAddProject(newProject) {
+  //   const updatedProjectList = [
+  //     { id: String(projectList.length + 1), ...newProject },
+  //     ...projectList,
+  //   ];
+  //   setProjectList(updatedProjectList);
+  // }
+
+  // const handleCloseForm = () => {
+  //   setShowForm(false);
+  // };
+
+  ///////
 
   return (
     <>
@@ -149,6 +177,7 @@ export default function App() {
         questions={questions}
         setQuestions={setQuestions}
         setCurrentQuestionIndex={setCurrentQuestionIndex}
+        // handleShowForm={handleShowForm}
       />
     </>
   );

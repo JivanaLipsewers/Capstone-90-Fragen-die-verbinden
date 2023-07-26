@@ -1,4 +1,12 @@
 import { ButtonContainer, PlusButton } from "../Navigation/styles";
+import {
+  Form,
+  Fieldset,
+  SubmitButton,
+  Input,
+  Textarea,
+  Select,
+} from "../AddQuestion/styles";
 
 export function AddQuestionButton({ isAdded, onToggleAdd }) {
   return (
@@ -17,5 +25,121 @@ export function AddQuestionButton({ isAdded, onToggleAdd }) {
         )}
       </PlusButton>
     </ButtonContainer>
+  );
+}
+/////////////////
+
+export default function ProjectForm({ onAddProject, onCloseForm }) {
+  const [imageFile, setImageFile] = useState(null);
+  const [isSelectOpen, setIsSelectOpen] = useState(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    if (imageFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        data.imageSource = reader.result;
+        onAddProject(data);
+      };
+      reader.readAsDataURL(imageFile);
+    } else {
+      data.imageSource = "/placeholder-image.jpg";
+      onAddProject(data);
+    }
+    event.target.reset();
+    alert("You have successfully submitted your project!");
+    onCloseForm();
+  };
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageFile(file);
+  };
+
+  function openSelectOptions() {
+    setIsSelectOpen(true);
+  }
+  return (
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <Fieldset>
+          <label htmlFor="title">
+            <p>Title: </p>
+            <Input
+              name="title"
+              type="text"
+              minLength="5"
+              maxLength="20"
+              id="title"
+              required
+              placeholder="Enter your project title"
+            />
+          </label>
+          {/* <label htmlFor="imageSource">
+            <p>Image: </p>
+            <input
+              type="file"
+              name="imageSource"
+              id="imageSource"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
+          </label> */}
+          <label htmlFor="shortDescription">
+            <p>Short description: </p>
+            <Textarea
+              name="shortDescription"
+              id="shortDescription"
+              minLength="30"
+              maxLength="100"
+              required
+              placeholder="Enter a short description. Max. 100 characters."
+            />
+          </label>
+          <label htmlFor="longDescription">
+            <p>Long description: </p>
+            <Textarea
+              name="longDescription"
+              id="longDescription"
+              minLength="50"
+              maxLength="200"
+              required
+              placeholder="Enter a long description. Max. 200 characters."
+            />
+          </label>
+          <br />
+          <br />
+          <label htmlFor="category_form" onClick={openSelectOptions}>
+            Select a category:{" "}
+          </label>
+          <Select name="category" id="category_form" required={isSelectOpen}>
+            <option value="Community">Community</option>
+            <option value="Environment">Environment</option>
+            <option value="Politics">Politics</option>
+          </Select>
+          <label htmlFor="organizer">
+            <p>Organizer:</p>
+            <Input
+              type="text"
+              name="organizer"
+              id="organizer"
+              required
+              placeholder="Enter your organization"
+            />
+          </label>
+          <label htmlFor="contact">
+            <p>Contact email: </p>
+            <Input
+              name="contact"
+              id="contact"
+              type="email"
+              required
+              placeholder="Enter your email-address"
+            />
+          </label>
+        </Fieldset>
+        <SubmitButton type="submit">Submit your project</SubmitButton>
+      </Form>
+    </div>
   );
 }
