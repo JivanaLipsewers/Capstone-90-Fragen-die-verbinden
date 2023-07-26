@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Question } from "../components/Question/index.js";
-import { FavoriteButton } from "../components/FavoriteButton/index.js";
 import Header from "@/components/Header/index.js";
 import Filter from "../components/Filter/index.js";
-import { AddQuestionButton } from "@/components/AddQuestion/index.js";
+import Navigation from "../components/Navigation/index.js";
 
 const initialQuestions = [
   {
@@ -111,19 +110,11 @@ export default function App() {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   }
+
   function handleNextQuestion() {
     if (currentQuestionIndex + 1 < questions.length) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
-  }
-
-  function handleToggleFavorite() {
-    const updatedQuestions = questions.map((question) =>
-      question.id === currentQuestion.id
-        ? { ...question, isFavorite: !question.isFavorite }
-        : question
-    );
-    setQuestions(updatedQuestions);
   }
 
   const categories = ["Über uns", "Über dich", "Über mich"];
@@ -140,13 +131,6 @@ export default function App() {
     }
   }
 
-  const handleToggleAdd = () => {
-    setCurrentQuestion((prevQuestion) => ({
-      ...prevQuestion,
-      isAdded: !prevQuestion.isAdded,
-    }));
-  };
-
   return (
     <>
       <Header />
@@ -160,16 +144,12 @@ export default function App() {
         onPrevQuestion={handlePrevQuestion}
         onNextQuestion={handleNextQuestion}
       />
-      <div style={{ display: "flex", gap: "10px" }}>
-        <FavoriteButton
-          isFavorite={currentQuestion.isFavorite}
-          onToggleFavorite={handleToggleFavorite}
-        />
-        <AddQuestionButton
-          isAdded={currentQuestion.isAdded}
-          onToggleAdd={handleToggleAdd}
-        />
-      </div>
+      <Navigation
+        currentQuestion={currentQuestion}
+        questions={questions}
+        setQuestions={setQuestions}
+        setCurrentQuestionIndex={setCurrentQuestionIndex}
+      />
     </>
   );
 }
