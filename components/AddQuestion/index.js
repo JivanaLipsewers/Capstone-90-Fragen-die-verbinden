@@ -38,7 +38,7 @@ export default function AddQuestion({ onCloseForm, onAddQuestion }) {
     onAddQuestion(data);
 
     event.target.reset();
-    alert("You have successfully submitted your project!");
+    // alert("You have successfully submitted your project!");
     onCloseForm();
   };
 
@@ -50,7 +50,7 @@ export default function AddQuestion({ onCloseForm, onAddQuestion }) {
       <Form onSubmit={handleSubmit}>
         <Fieldset>
           <label htmlFor="category_form" onClick={openSelectOptions}>
-            Select a category:{" "}
+            Wähle eine Kategorie:{" "}
           </label>
           <Select name="category" id="category_form" required={isSelectOpen}>
             <option value="Über dich">Über dich</option>
@@ -58,7 +58,7 @@ export default function AddQuestion({ onCloseForm, onAddQuestion }) {
             <option value="Über uns">Über uns</option>
           </Select>
           <label htmlFor="question">
-            <p>Frage</p>
+            <p>Formuliere deine Frage:</p>
             <Input
               name="question"
               type="text"
@@ -66,11 +66,11 @@ export default function AddQuestion({ onCloseForm, onAddQuestion }) {
               maxLength="20"
               id="question"
               required
-              placeholder="Enter a question"
+              placeholder="Hier deine Frage eintragen"
             />
           </label>
         </Fieldset>
-        <SubmitButton type="submit">Submit your questions</SubmitButton>
+        <SubmitButton type="submit">Füge deine Frage hinzu</SubmitButton>
       </Form>
     </div>
   );

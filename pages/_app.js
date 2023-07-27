@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { Question } from "../components/Question/index.js";
 import Header from "@/components/Header/index.js";
 import Filter from "../components/Filter/index.js";
@@ -104,7 +105,9 @@ const initialQuestions = [
 const categories = ["Über uns", "Über dich", "Über mich"];
 
 export default function App() {
-  const [questions, setQuestions] = useState(initialQuestions);
+  const [questions, setQuestions] = useLocalStorageState("initialQuestions", {
+    defaultValue: initialQuestions,
+  });
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [showForm, setShowForm] = useState(false);
