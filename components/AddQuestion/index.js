@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { ButtonContainer, PlusButton } from "../Navigation/styles";
 import {
   Form,
   Fieldset,
   SubmitButton,
   Input,
-  Textarea,
   Select,
 } from "../AddQuestion/styles";
 
@@ -29,31 +29,17 @@ export function AddQuestionButton({ isAdded, onToggleAdd }) {
 }
 /////////////////
 
-export default function ProjectForm({ onAddProject, onCloseForm }) {
-  const [imageFile, setImageFile] = useState(null);
+export default function AddQuestion({ onCloseForm, onAddQuestion }) {
   const [isSelectOpen, setIsSelectOpen] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
-    if (imageFile) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        data.imageSource = reader.result;
-        onAddProject(data);
-      };
-      reader.readAsDataURL(imageFile);
-    } else {
-      data.imageSource = "/placeholder-image.jpg";
-      onAddProject(data);
-    }
+    onAddQuestion(data);
+
     event.target.reset();
     alert("You have successfully submitted your project!");
     onCloseForm();
-  };
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setImageFile(file);
   };
 
   function openSelectOptions() {
@@ -63,8 +49,16 @@ export default function ProjectForm({ onAddProject, onCloseForm }) {
     <div>
       <Form onSubmit={handleSubmit}>
         <Fieldset>
+          <label htmlFor="category_form" onClick={openSelectOptions}>
+            Select a category:{" "}
+          </label>
+          <Select name="category" id="category_form" required={isSelectOpen}>
+            <option value="Über dich">Über dich</option>
+            <option value="Über mich">Über mich</option>
+            <option value="Über uns">Über uns</option>
+          </Select>
           <label htmlFor="title">
-            <p>Title: </p>
+            <p>Frage</p>
             <Input
               name="title"
               type="text"
@@ -72,73 +66,11 @@ export default function ProjectForm({ onAddProject, onCloseForm }) {
               maxLength="20"
               id="title"
               required
-              placeholder="Enter your project title"
-            />
-          </label>
-          {/* <label htmlFor="imageSource">
-            <p>Image: </p>
-            <input
-              type="file"
-              name="imageSource"
-              id="imageSource"
-              accept="image/*"
-              onChange={handleImageChange}
-            />
-          </label> */}
-          <label htmlFor="shortDescription">
-            <p>Short description: </p>
-            <Textarea
-              name="shortDescription"
-              id="shortDescription"
-              minLength="30"
-              maxLength="100"
-              required
-              placeholder="Enter a short description. Max. 100 characters."
-            />
-          </label>
-          <label htmlFor="longDescription">
-            <p>Long description: </p>
-            <Textarea
-              name="longDescription"
-              id="longDescription"
-              minLength="50"
-              maxLength="200"
-              required
-              placeholder="Enter a long description. Max. 200 characters."
-            />
-          </label>
-          <br />
-          <br />
-          <label htmlFor="category_form" onClick={openSelectOptions}>
-            Select a category:{" "}
-          </label>
-          <Select name="category" id="category_form" required={isSelectOpen}>
-            <option value="Community">Community</option>
-            <option value="Environment">Environment</option>
-            <option value="Politics">Politics</option>
-          </Select>
-          <label htmlFor="organizer">
-            <p>Organizer:</p>
-            <Input
-              type="text"
-              name="organizer"
-              id="organizer"
-              required
-              placeholder="Enter your organization"
-            />
-          </label>
-          <label htmlFor="contact">
-            <p>Contact email: </p>
-            <Input
-              name="contact"
-              id="contact"
-              type="email"
-              required
-              placeholder="Enter your email-address"
+              placeholder="Enter a question"
             />
           </label>
         </Fieldset>
-        <SubmitButton type="submit">Submit your project</SubmitButton>
+        <SubmitButton type="submit">Submit your questions</SubmitButton>
       </Form>
     </div>
   );

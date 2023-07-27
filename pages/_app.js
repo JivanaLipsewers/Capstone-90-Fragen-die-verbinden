@@ -3,6 +3,7 @@ import { Question } from "../components/Question/index.js";
 import Header from "@/components/Header/index.js";
 import Filter from "../components/Filter/index.js";
 import Navigation from "../components/Navigation/index.js";
+import AddQuestion from "@/components/AddQuestion/index.js";
 
 const initialQuestions = [
   {
@@ -139,23 +140,27 @@ export default function App() {
 
   //////////
   // const [projectList, setProjectList] = useState(initialProjects);
-  // const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
-  // const handleShowForm = () => {
-  //   setShowForm(!showForm);
-  // };
+  const handleShowForm = () => {
+    setShowForm(!showForm);
+  };
 
-  // function handleAddProject(newProject) {
-  //   const updatedProjectList = [
-  //     { id: String(projectList.length + 1), ...newProject },
-  //     ...projectList,
-  //   ];
-  //   setProjectList(updatedProjectList);
-  // }
+  function handleAddProject(newProject) {
+    const updatedProjectList = [
+      { id: String(projectList.length + 1), ...newProject },
+      ...projectList,
+    ];
+    setProjectList(updatedProjectList);
+  }
 
-  // const handleCloseForm = () => {
-  //   setShowForm(false);
-  // };
+  const handleCloseForm = () => {
+    setShowForm(false);
+  };
+
+  function handleAddQuestion(newQuestion) {
+    setQuestions([{ newQuestion }, ...initialQuestions]);
+  }
 
   ///////
 
@@ -172,12 +177,13 @@ export default function App() {
         onPrevQuestion={handlePrevQuestion}
         onNextQuestion={handleNextQuestion}
       />
+      {showForm && <AddQuestion onAddQuestion={handleAddQuestion} />}
       <Navigation
         currentQuestion={currentQuestion}
         questions={questions}
         setQuestions={setQuestions}
         setCurrentQuestionIndex={setCurrentQuestionIndex}
-        // handleShowForm={handleShowForm}
+        handleShowForm={handleShowForm}
       />
     </>
   );

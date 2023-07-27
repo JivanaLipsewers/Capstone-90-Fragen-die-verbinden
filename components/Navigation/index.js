@@ -1,23 +1,22 @@
 import { AddQuestionButton } from "../AddQuestion/index.js";
 import { FavoriteButton } from "../FavoriteButton/index.js";
 import { ButtonBox, ButtonContainer, PlusButton } from "../Navigation/styles";
-import ProjectForm from "@/components/AddQuestion/index.js";
 
 export default function Navigation({
   currentQuestion,
   questions,
   setQuestions,
-  setCurrentQuestionIndex,
+  // setCurrentQuestionIndex,
   handleShowForm,
 }) {
-  const handleToggleAdd = () => {
-    const updatedQuestions = questions.map((question) =>
-      question.id === currentQuestion.id
-        ? { ...question, isAdded: !question.isAdded }
-        : question
-    );
-    setQuestions(updatedQuestions);
-  };
+  // const handleToggleAdd = () => {
+  //   const updatedQuestions = questions.map((question) =>
+  //     question.id === currentQuestion.id
+  //       ? { ...question, isAdded: !question.isAdded }
+  //       : question
+  //   );
+  //   setQuestions(updatedQuestions);
+  // };
 
   const handleToggleFavorite = () => {
     const updatedQuestions = questions.map((question) =>
@@ -46,8 +45,8 @@ export default function Navigation({
     <ButtonContainer>
       <ButtonBox>
         <AddQuestionButton
-          isAdded={currentQuestion.isAdded}
-          onToggleAdd={handleToggleAdd}
+          // isAdded={currentQuestion.isAdded}
+          // onToggleAdd={handleToggleAdd}
           onClick={handleShowForm}
         />
       </ButtonBox>
