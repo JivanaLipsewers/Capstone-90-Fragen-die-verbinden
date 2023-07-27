@@ -107,6 +107,7 @@ export default function App() {
   const [questions, setQuestions] = useState(initialQuestions);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
   function handlePrevQuestion() {
     if (currentQuestionIndex >= 1) {
@@ -140,26 +141,25 @@ export default function App() {
 
   //////////
   // const [projectList, setProjectList] = useState(initialProjects);
-  const [showForm, setShowForm] = useState(true);
 
   const handleShowForm = () => {
     setShowForm(!showForm);
   };
 
-  function handleAddProject(newProject) {
-    const updatedProjectList = [
-      { id: String(projectList.length + 1), ...newProject },
-      ...projectList,
-    ];
-    setProjectList(updatedProjectList);
-  }
+  // function handleAddProject(newProject) {
+  //   const updatedProjectList = [
+  //     { id: String(projectList.length + 1), ...newProject },
+  //     ...projectList,
+  //   ];
+  //   setProjectList(updatedProjectList);
+  // }
 
   const handleCloseForm = () => {
     setShowForm(false);
   };
 
   function handleAddQuestion(newQuestion) {
-    setQuestions([{ newQuestion }, ...initialQuestions]);
+    setQuestions([newQuestion, ...initialQuestions]);
   }
 
   ///////
@@ -177,7 +177,13 @@ export default function App() {
         onPrevQuestion={handlePrevQuestion}
         onNextQuestion={handleNextQuestion}
       />
-      {showForm && <AddQuestion onAddQuestion={handleAddQuestion} />}
+      {showForm && (
+        <AddQuestion
+          onAddQuestion={handleAddQuestion}
+          onShowForm={handleShowForm}
+          onCloseForm={handleCloseForm}
+        />
+      )}
       <Navigation
         currentQuestion={currentQuestion}
         questions={questions}

@@ -57,14 +57,14 @@ export default function AddQuestion({ onCloseForm, onAddQuestion }) {
             <option value="Über mich">Über mich</option>
             <option value="Über uns">Über uns</option>
           </Select>
-          <label htmlFor="title">
+          <label htmlFor="question">
             <p>Frage</p>
             <Input
-              name="title"
+              name="question"
               type="text"
               minLength="5"
               maxLength="20"
-              id="title"
+              id="question"
               required
               placeholder="Enter a question"
             />
