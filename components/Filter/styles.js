@@ -8,6 +8,7 @@ export const FilterContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 20px;
+  margin-top: 20px;
 `;
 
 export const FilterHeader = styled.h3`

@@ -18,7 +18,7 @@ export const ButtonBox = styled.div`
 `;
 
 export const PlusButton = styled.button`
-  background-color: #fff;
+  background-color: #000;
   height: 100px;
   border: 2px solid #000;
   width: 100%;
@@ -29,7 +29,7 @@ export const PlusButton = styled.button`
 `;
 
 export const HeartButton = styled.button`
-  background-color: #fff;
+  background-color: #000;
   height: 100px;
   border: 2px solid #000;
   width: 100%;

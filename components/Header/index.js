@@ -7,7 +7,7 @@ const Header = ({ categories, selectedCategories, onCategoryChange }) => {
 
   return (
     <HeaderContainer>
-      <h1>Quiz-App</h1>
+      <h1>Fragen, die verbinden.</h1>
     </HeaderContainer>
   );
 };
