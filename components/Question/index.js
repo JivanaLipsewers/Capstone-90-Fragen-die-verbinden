@@ -16,6 +16,7 @@ export function Question({ question, onPrevQuestion, onNextQuestion }) {
           </svg>
         </ChevronButton>
         <h2>{question.category}</h2>
+
         <ChevronButton onClick={onNextQuestion}>
           <svg viewBox="0 0 24 24" width="32" height="32">
             <title>chevron-right</title>

@@ -4,7 +4,7 @@ export const ButtonContainer = styled.nav`
   display: flex;
   justify-content: center;
 
-  gap: 6%;
+  gap: 4%;
 `;
 
 export const ButtonBox = styled.div`
@@ -19,7 +19,7 @@ export const ButtonBox = styled.div`
 
 export const PlusButton = styled.button`
   background-color: #000;
-  height: 100px;
+  height: 80px;
   border: 2px solid #000;
   width: 100%;
 
@@ -30,7 +30,7 @@ export const PlusButton = styled.button`
 
 export const HeartButton = styled.button`
   background-color: #000;
-  height: 100px;
+  height: 80px;
   border: 2px solid #000;
   width: 100%;
 

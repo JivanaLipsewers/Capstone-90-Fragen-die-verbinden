@@ -5,8 +5,8 @@ export const QuestionContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 160px;
-  margin-bottom: 160px;
+  margin-top: 210px;
+  margin-bottom: 240px;
 `;
 
 export const QuestionContent = styled.div`
